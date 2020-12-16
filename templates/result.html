@@ -1,0 +1,510 @@
+{% load static %}
+<html>
+    <head>
+        <title>TensorFlow Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container ">
+            <div class="row">
+                {% if prediksi_title %}
+                        <div class="card-fix my-5 mx-auto">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5 align="center">The category is {{ prediksi_title }}</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 mx-auto my-3">
+                                        <img class="img-fluid mb-3 " src={% static 'plot.png' %} alt="your image" />
+                                    </div>
+                                    <div class="col-md-4 mx-auto my-5">
+                                        <img class="image-result img-fluid mb-3 " src={% static 'image.png' %} alt="your image" />
+                                    </div>
+                                </div>
+                                <!--<div class="col-md-12">
+                                    <div class="mx-auto my-2">
+                                        <table id="myTable" class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th style="text-align:center">0</th>
+                                                    <th style="text-align:center">1</th>
+                                                    <th style="text-align:center">2</th>
+                                                    <th style="text-align:center">3</th>
+                                                    <th style="text-align:center">4</th>
+                                                    <th style="text-align:center">5</th>
+                                                    <th style="text-align:center">6</th>
+                                                    <th style="text-align:center">7</th>
+                                                    <th style="text-align:center">8</th>
+                                                    <th style="text-align:center">9</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Label</th>
+                                                    <td>T-shirt/top</td>
+                                                    <td>Trouser</td>
+                                                    <td>Pullover</td>
+                                                    <td>Dress</td>
+                                                    <td>Coat</td>
+                                                    <td>Sandal</td>
+                                                    <td>Shirt</td>
+                                                    <td>Sneaker</td>
+                                                    <td>Bag</td>
+                                                    <td>Ankle boot</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>-->
+
+                                <div class="col-md-12">
+                                    <div class="mx-auto my-2">
+                                        <table id="myTable" class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th style="text-align:center">0</th>
+                                                    <th style="text-align:center">1</th>
+                                                    <th style="text-align:center">2</th>
+                                                    <th style="text-align:center">3</th>
+                                                    <th style="text-align:center">4</th>
+                                                    <th style="text-align:center">5</th>
+                                                    <th style="text-align:center">6</th>
+                                                    <th style="text-align:center">7</th>
+                                                    <th style="text-align:center">8</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Label</th>
+                                                    <td>Accessories</td>
+                                                    <td>Apparel set</td>
+                                                    <td>Bags</td>
+                                                    <td>Bath and Body</td>
+                                                    <td>Beauty Accessories</td>
+                                                    <td>Belts</td>
+                                                    <td>Bottomwear</td>
+                                                    <td>Cufflinks</td>
+                                                    <td>Dress</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mx-auto my-2">
+                                        <table id="myTable1" class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th style="text-align:center">9</th>
+                                                    <th style="text-align:center">10</th>
+                                                    <th style="text-align:center">11</th>
+                                                    <th style="text-align:center">12</th>
+                                                    <th style="text-align:center">13</th>
+                                                    <th style="text-align:center">14</th>
+                                                    <th style="text-align:center">15</th>
+                                                    <th style="text-align:center">16</th>
+                                                    <th style="text-align:center">17</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Label</th>
+                                                    <td>Eyes</td>
+                                                    <td>Eyewear</td>
+                                                    <td>Flip Flops</td>
+                                                    <td>Fragrance</td>
+                                                    <td>Free Gifts</td>
+                                                    <td>Gloves</td>
+                                                    <td>Hair</td>
+                                                    <td>Headwear</td>
+                                                    <td>Home Furnishing</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mx-auto my-2">
+                                        <table id="myTable2" class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th style="text-align:center">18</th>
+                                                    <th style="text-align:center">19</th>
+                                                    <th style="text-align:center">20</th>
+                                                    <th style="text-align:center">21</th>
+                                                    <th style="text-align:center">22</th>
+                                                    <th style="text-align:center">23</th>
+                                                    <th style="text-align:center">24</th>
+                                                    <th style="text-align:center">25</th>
+                                                    <th style="text-align:center">26</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Label</th>
+                                                    <td>Innerwear</td>
+                                                    <td>Jewellery</td>
+                                                    <td>Lips</td>
+                                                    <td>Loungewear and Nightwear</td>
+                                                    <td>Makeup</td>
+                                                    <td>Mufflers</td>
+                                                    <td>Nails</td>
+                                                    <td>Perfumes</td>
+                                                    <td>Sandal</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mx-auto my-2">
+                                        <table id="myTable3" class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th style="text-align:center">27</th>
+                                                    <th style="text-align:center">28</th>
+                                                    <th style="text-align:center">29</th>
+                                                    <th style="text-align:center">30</th>
+                                                    <th style="text-align:center">31</th>
+                                                    <th style="text-align:center">32</th>
+                                                    <th style="text-align:center">33</th>
+                                                    <th style="text-align:center">34</th>
+                                                    <th style="text-align:center">35</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Label</th>
+                                                    <td>Saree</td>
+                                                    <td>Scarves</td>
+                                                    <td>Show Accessories</td>
+                                                    <td>Shoes</td>
+                                                    <td>Skin Care</td>
+                                                    <td>Skin Care</td>
+                                                    <td>Socks</td>
+                                                    <td>Sport Accessories</td>
+                                                    <td>Sport Equipment</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mx-auto my-2">
+                                        <table id="myTable4" class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Code</th>
+                                                    <th style="text-align:center">36</th>
+                                                    <th style="text-align:center">37</th>
+                                                    <th style="text-align:center">38</th>
+                                                    <th style="text-align:center">39</th>
+                                                    <th style="text-align:center">40</th>
+                                                    <th style="text-align:center">41</th>
+                                                    <th style="text-align:center">42</th>
+                                                    <th style="text-align:center">43</th>
+                                                    <th style="text-align:center">44</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Label</th>
+                                                    <td>Stoles</td>
+                                                    <td>Ties</td>
+                                                    <td>Topwear</td>
+                                                    <td>Umbrellas</td>
+                                                    <td>Vouchers</td>
+                                                    <td>Wallets</td>
+                                                    <td>Watches</td>
+                                                    <td>Water Bottle</td>
+                                                    <td>Wristbands</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="card-title" align="left">
+                                    <h5>Product in Tokopedia</h5>
+                                </div>
+                                <div class="row">
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Biru</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Abu-abu</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt2.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Merah</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt3.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Hitam</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt4.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                            </div>
+                            </div>
+
+                                <br>
+                                <div align="right">
+                                    <a class="btn btn-primary" style="background: #03ac0e; border: solid 1px #FFFFFF" href="{{tokopedia_url}}" target="_blank">Search in Tokopedia</a>
+                                </div>
+                                <br>
+
+                            <div>
+                                <div class="card-title" align="left">
+                                    <h5>Product in Bukalapak</h5>
+                                </div>
+                                <div class="row">
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Biru</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Abu-abu</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt2.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Merah</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt3.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Hitam</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt4.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                            </div>
+                            </div>
+
+                                <br>
+                                <div align="right">
+                                    <a class="btn btn-primary" style="background: #d71149; border: solid 1px #FFFFFF" href="{{bukalapak_url}}" target="_blank">Search in Bukalapak</a>
+                                </div>
+
+                            <div>
+                                <div class="card-title" align="left">
+                                    <h5>Product in Shopee</h5>
+                                </div>
+                                <div class="row">
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Biru</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Abu-abu</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt2.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Merah</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt3.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+
+                                  <div class="column">
+                                    <div class="card">
+                                      <h4>T-shirt Hitam</h4>
+                                        <center>
+                                            <img class="image-product" src={% static 'tshirt4.jpeg' %} alt="your image" />
+                                        </center>
+                                        <br>
+                                      <h5>Rp.120.000</h5>
+                                      <h5>Jakarta</h5>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </div>
+                                <br>
+                                </center>
+                                <div align="right">
+                                    <a class="btn btn-primary" href="/">Back to Home</a>
+                                    <a class="btn btn-primary" style="background: #f63; border: solid 1px #FFFFFF" href="{{shopee_url}}" target="_blank">Search in Shopee</a>
+                                </div>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+    <style>
+        .image-result {
+            height: 250px;
+            width: auto;
+        }
+        .image-product {
+            height: 125px;
+            width: 125px;
+        }
+
+        td, th {
+          border: 2px solid #96C0B7;
+          padding: 8px;
+        }
+
+        th {
+          background-color: #5386E4;
+          color: white;
+        }
+
+        .column {
+          float: left;
+          width: 25%;
+          padding: 0 10px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {margin: 0 -5px;}
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+          .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+          }
+        }
+
+        /* Style the counter cards */
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          padding: 16px;
+          text-align: center;
+          background-color: #f1f1f1;
+        }
+
+        .card-fix {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          padding: 16px;
+          text-align: center;
+          background-color: #D4DFC7;
+        }
+
+    </style>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                    $('#preview').removeAttr('hidden');
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#image").change(function() {
+            readURL(this);
+        });
+    </script>
+</html>

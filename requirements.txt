@@ -1,0 +1,6 @@
+django
+tensorflow==1.14
+h5py
+keras==2.2.5
+matplotlib
+pillow
